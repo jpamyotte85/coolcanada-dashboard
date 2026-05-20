@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CoolCanada Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <div id="confetti-container"></div>
+
+  <header>
+    <div class="channel-info">
+      <a href="https://www.youtube.com/@Coolcanada-rt3547" target="_blank" rel="noopener noreferrer">
+        <img id="channel-avatar" src="" alt="Channel Avatar"/>
+      </a>
+      <div>
+        <a href="https://www.youtube.com/@Coolcanada-rt3547" target="_blank" rel="noopener noreferrer" class="channel-link">
+          <h1 id="channel-name">Loading...</h1>
+        </a>
+        <p class="tagline">🇨🇦 Canada's Coolest Creator</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- MILESTONES -->
+  <section class="milestones">
+    <div class="milestone-card subs-card">
+      <div class="milestone-icon">🏆</div>
+      <h2>Subscriber Journey</h2>
+      <div class="big-number" id="sub-count">—</div>
+      <p class="goal-label">Goal: <strong>1,000 Subscribers</strong></p>
+      <div class="progress-track">
+        <div class="progress-fill subs-fill" id="sub-bar"></div>
+      </div>
+      <p class="progress-pct" id="sub-pct">0%</p>
+    </div>
+
+    <div class="milestone-card likes-card">
+      <div class="milestone-icon">❤️</div>
+      <h2>Like Army</h2>
+      <div class="big-number" id="like-count">—</div>
+      <p class="goal-label">Goal: <strong>10,000 Likes</strong></p>
+      <div class="progress-track">
+        <div class="progress-fill likes-fill" id="like-bar"></div>
+      </div>
+      <p class="progress-pct" id="like-pct">0%</p>
+    </div>
+  </section>
+
+  <!-- STATS ROW -->
+  <section class="stats-row">
+    <div class="stat-chip">
+      <span class="stat-icon">👁️</span>
+      <span class="stat-value" id="view-count">—</span>
+      <span class="stat-label">Total Views</span>
+    </div>
+    <div class="stat-chip">
+      <span class="stat-icon">🎬</span>
+      <span class="stat-value" id="video-count">—</span>
+      <span class="stat-label">Videos</span>
+    </div>
+    <a class="stat-chip roblox-chip" id="roblox-chip" href="https://www.roblox.com/search/users?keyword=johnnyyt53" target="_blank" rel="noopener noreferrer">
+      <img id="roblox-avatar" src="" alt="Roblox" style="display:none"/>
+      <span class="stat-icon" id="roblox-icon">🎮</span>
+      <span class="stat-value roblox-name">johnnyyt53</span>
+      <span class="stat-label">Roblox</span>
+    </a>
+  </section>
+
+  <!-- FAVOURITE CREATORS -->
+  <section class="videos-section" id="creators-section">
+    <h2 class="section-title">🌟 Favourite Creators</h2>
+    <div class="creators-grid" id="creators-grid">
+      <div class="loading-placeholder">Loading creators...</div>
+    </div>
+  </section>
+
+  <!-- SHORTS -->
+  <section class="videos-section" id="shorts-section">
+    <h2 class="section-title">⚡ Latest Shorts</h2>
+    <div class="shorts-grid" id="shorts-grid">
+      <div class="loading-placeholder">Loading shorts...</div>
+    </div>
+  </section>
+
+  <!-- LATEST VIDEOS -->
+  <section class="videos-section" id="videos-section">
+    <h2 class="section-title">🏆 Top Shorts</h2>
+    <div class="top-shorts-grid" id="videos-grid">
+      <div class="loading-placeholder">Loading videos...</div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Made with ❤️ for Canada Country</p>
+  </footer>
+
+  <script src="dashboard.js"></script>
+</body>
+</html>
