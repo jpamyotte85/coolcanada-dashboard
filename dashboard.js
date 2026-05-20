@@ -35,8 +35,11 @@ async function resolveChannel() {
   channelId = ch.id;
   uploadsId = ch.contentDetails.relatedPlaylists.uploads;
 
-  document.getElementById('channel-name').textContent = ch.snippet.title;
+  const name = ch.snippet.title;
+  document.getElementById('channel-name').textContent = name;
   document.getElementById('channel-avatar').src = ch.snippet.thumbnails.medium?.url || ch.snippet.thumbnails.default.url;
+  document.getElementById('footer-name').textContent  = name;
+  document.title = name;
 }
 
 // ---- CHANNEL STATS ----
