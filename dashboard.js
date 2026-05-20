@@ -91,7 +91,7 @@ async function loadVideos() {
   const latest    = allShorts.slice(0, 10);
   const top6      = [...allShorts]
     .sort((a, b) => parseInt(b.statistics.viewCount || 0) - parseInt(a.statistics.viewCount || 0))
-    .slice(0, 5);
+    .slice(0, 6);
 
   renderShorts(latest);
   renderTopShorts(top6);
