@@ -4,9 +4,9 @@ const CHANNEL_HANDLE = 'Coolcanada-rt3547';
 const FAVOURITE_HANDLES = [
   'JJstrangechannel',
   'Dustin-t6m',
-  'CoolasakiFranceball',
-  'Aspirerb',
-  'CanadaQuebec_cb'
+  'CanadaQuebec_cb',
+  'PolandballOfficialYT',
+  'CoolasakiFranceball'
 ];
 
 const SUB_GOAL  = 1000;
