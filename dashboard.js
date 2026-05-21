@@ -61,7 +61,7 @@ async function loadChannelStats() {
 
 // ---- VIDEOS + LIKE TOTAL ----
 async function loadVideos() {
-  // Paginate uploads playlist to get all videos (up to 200)
+  // Paginate uploads playlist to get all videos
   let allItems  = [];
   let pageToken = '';
   do {
@@ -69,7 +69,7 @@ async function loadVideos() {
     const data = await apiFetch(url);
     allItems   = allItems.concat(data.items);
     pageToken  = data.nextPageToken || '';
-  } while (pageToken && allItems.length < 200);
+  } while (pageToken);
 
   // videos.list only accepts 50 IDs at a time — batch if needed
   let allVideos = [];
