@@ -52,8 +52,9 @@ async function loadChannelStats() {
   const views = parseInt(s.viewCount     || 0);
   const vids  = parseInt(s.videoCount    || 0);
 
-  document.getElementById('sub-count').textContent  = fmt(totalSubs);
-  document.getElementById('view-count').textContent = fmt(views);
+  document.getElementById('sub-count').textContent   = fmt(totalSubs);
+  document.getElementById('view-count').textContent  = fmt(views);
+  document.getElementById('video-count').textContent = fmt(vids);
 
   setProgress('sub-bar', 'sub-pct', totalSubs, SUB_GOAL);
 }
@@ -87,9 +88,7 @@ async function loadVideos() {
   setProgress('like-bar', 'like-pct', totalLikes, LIKE_GOAL);
 
   const allShorts = statsData.items.filter(v => isShort(v));
-  document.getElementById('video-count').textContent = fmt(allShorts.length);
-
-  const latest = allShorts.slice(0, 10);
+  const latest    = allShorts.slice(0, 10);
   const top6      = [...allShorts]
     .sort((a, b) => parseInt(b.statistics.viewCount || 0) - parseInt(a.statistics.viewCount || 0))
     .slice(0, 6);
