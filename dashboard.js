@@ -86,8 +86,10 @@ async function loadVideos() {
   const statsData = { items: allVideos };
 
 
-  const totalLikes = statsData.items.reduce((sum, v) => sum + parseInt(v.statistics.likeCount || 0), 0);
-  document.getElementById('like-count').textContent = totalLikes.toLocaleString();
+  const totalLikes    = statsData.items.reduce((sum, v) => sum + parseInt(v.statistics.likeCount    || 0), 0);
+  const totalComments = statsData.items.reduce((sum, v) => sum + parseInt(v.statistics.commentCount || 0), 0);
+  document.getElementById('like-count').textContent    = totalLikes.toLocaleString();
+  document.getElementById('comment-count').textContent = fmt(totalComments);
   setProgress('like-bar', 'like-pct', totalLikes, LIKE_GOAL);
 
   const allShorts = statsData.items
