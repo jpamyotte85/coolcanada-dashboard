@@ -1,6 +1,9 @@
 const API_KEY        = 'AIzaSyD-NoHOpGpVBS3w8U7qwuyHpONkgNz_z2U';
 const CHANNEL_HANDLE = 'Coolcanada-rt3547';
 
+// ---- CHANGE THIS to update the featured video ----
+const FEATURED_VIDEO_ID = '8hlI9mzErg0';
+
 const FAVOURITE_HANDLES = [
   'JJstrangechannel',
   'Dustin-t6m',
@@ -20,7 +23,7 @@ let totalSubs  = 0;
 async function loadData() {
   try {
     if (!channelId) await resolveChannel();
-    await Promise.all([loadChannelStats(), loadVideos(), loadFavouriteCreators(), loadRobloxProfile()]);
+    await Promise.all([loadChannelStats(), loadVideos(), loadFavouriteCreators(), loadRobloxProfile(), loadFeaturedVideo()]);
   } catch (err) {
     console.error('Dashboard error:', err);
   }
@@ -87,7 +90,9 @@ async function loadVideos() {
   document.getElementById('like-count').textContent = totalLikes.toLocaleString();
   setProgress('like-bar', 'like-pct', totalLikes, LIKE_GOAL);
 
-  const allShorts = statsData.items.filter(v => isShort(v));
+  const allShorts = statsData.items
+    .filter(v => isShort(v))
+    .sort((a, b) => new Date(b.snippet.publishedAt) - new Date(a.snippet.publishedAt));
   const latest    = allShorts.slice(0, 10);
   const top6      = [...allShorts]
     .sort((a, b) => parseInt(b.statistics.viewCount || 0) - parseInt(a.statistics.viewCount || 0))
@@ -141,6 +146,7 @@ function renderShorts(shorts) {
         <div class="video-meta">
           <span>👁️ ${fmt(s.viewCount || 0)}</span>
           <span>❤️ ${fmt(s.likeCount || 0)}</span>
+          <span>💬 ${fmt(s.commentCount || 0)}</span>
         </div>
       </div>`;
     grid.appendChild(card);
@@ -177,6 +183,7 @@ function renderTopShorts(videos) {
         <div class="video-meta">
           <span>👁️ ${fmt(s.viewCount || 0)}</span>
           <span>❤️ ${fmt(s.likeCount || 0)}</span>
+          <span>💬 ${fmt(s.commentCount || 0)}</span>
         </div>
       </div>`;
     grid.appendChild(card);
@@ -204,6 +211,29 @@ async function loadRobloxProfile() {
   } catch (e) {
     // CORS blocked — static fallback already in place
   }
+}
+
+// ---- FEATURED VIDEO ----
+async function loadFeaturedVideo() {
+  const section = document.getElementById('featured-section');
+  if (!FEATURED_VIDEO_ID) { section.style.display = 'none'; return; }
+
+  const url  = `https://www.googleapis.com/youtube/v3/videos?part=statistics,snippet&id=${FEATURED_VIDEO_ID}&key=${API_KEY}`;
+  const data = await apiFetch(url);
+  if (!data.items?.length) { section.style.display = 'none'; return; }
+
+  const v  = data.items[0];
+  const s  = v.statistics;
+  const sn = v.snippet;
+
+  document.getElementById('featured-iframe').src =
+    `https://www.youtube.com/embed/${FEATURED_VIDEO_ID}?rel=0`;
+  document.getElementById('featured-title').textContent   = sn.title;
+  document.getElementById('featured-channel').textContent = sn.channelTitle;
+  document.getElementById('featured-views').textContent   = fmt(s.viewCount  || 0);
+  document.getElementById('featured-likes').textContent   = fmt(s.likeCount  || 0);
+  document.getElementById('featured-comments').textContent = fmt(s.commentCount || 0);
+  section.style.display = '';
 }
 
 // ---- FAVOURITE CREATORS ----
