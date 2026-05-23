@@ -2,7 +2,7 @@ const API_KEY        = 'AIzaSyD-NoHOpGpVBS3w8U7qwuyHpONkgNz_z2U';
 const CHANNEL_HANDLE = 'Coolcanada-rt3547';
 
 // ---- CHANGE THIS to update the featured video ----
-const FEATURED_VIDEO_ID = '8hlI9mzErg0';
+const FEATURED_VIDEO_ID = 'TWzTdFJUm1Y';
 
 const FAVOURITE_HANDLES = [
   'JJstrangechannel',
